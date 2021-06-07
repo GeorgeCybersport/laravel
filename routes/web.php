@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\NewsController;
+use App\Http\Controllers\HelloController;
+use App\Http\Controllers\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,19 +18,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
-Route::get('/hello', function () {
-    echo "Hello, user";
-});
-Route::get('/hello/{name}', function (string $name) {
-    echo "Hello, ".$name;
-});
-Route::get('/info', function () {
-    echo "Info about project";
-});
-Route::get('/news', function () {
-    echo "news";
-});
-Route::get('/news/{id}', function (int $id) {
-    echo "news with id ".$id;
-});
+})->name("start");
+Route::get('/hello', [HelloController::class, "index"])
+    ->name("hello");
+
+Route::get("/news", [NewsController::class, "index"])
+    ->name('news');
+Route::get("/news/{id}", [NewsController::class, "single"])
+    ->where('id', '\d+')
+    ->name('news.single');
+Route::get("/news/create", [NewsController::class, "create"])
+    ->name('news.create');
+
+Route::get("/categories", [CategoriesController::class, "index"])
+    ->name('categories');
+Route::get("/categories/{id}", [CategoriesController::class, "single"])
+    ->name('categories.single');
