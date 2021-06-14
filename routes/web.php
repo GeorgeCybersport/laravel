@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\NewsController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\CategoriesController;
+use \App\Http\Controllers\OrderController;
+use \App\Http\Controllers\ReviewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +31,38 @@ Route::get("/news/{id}", [NewsController::class, "single"])
     ->name('news.single');
 Route::get("/news/create", [NewsController::class, "create"])
     ->name('news.create');
+Route::post("/news/store", [NewsController::class, "store"])
+    ->name('news.store');
+Route::get("/news/{id}/edit", [NewsController::class, "edit"])
+    ->name('news.edit');
+Route::put("/news/{id}/update", [NewsController::class, "update"])
+    ->name('news.update');
+Route::delete("/news/{id}/delete", [NewsController::class, "delete"])
+    ->where('id', '\d+')
+    ->name('news.delete');
 
 Route::get("/categories", [CategoriesController::class, "index"])
     ->name('categories');
 Route::get("/categories/{id}", [CategoriesController::class, "single"])
+    ->where('id', '\d+')
     ->name('categories.single');
+Route::get("/categories/create", [CategoriesController::class, "create"])
+    ->name('categories.create');
+Route::post("/categories/store", [CategoriesController::class, "store"])
+    ->name('categories.store');
+Route::get("/categories/{id}/edit", [CategoriesController::class, "edit"])
+    ->name('categories.edit');
+Route::put("/categories/{id}/update", [CategoriesController::class, "update"])
+    ->name('categories.update');
+Route::delete("/categories/{id}/delete", [CategoriesController::class, "delete"])
+    ->name('categories.delete');
+
+Route::get('/feedback', [\App\Http\Controllers\FeedbackController::class, "index"])->name('feedback');
+
+Route::get("/orders", [OrderController::class, "index"])->name("orders");
+Route::get("/orders/create", [OrderController::class, "create"])->name("orders.create");
+Route::post("/orders/store", [OrderController::class, "store"])->name("orders.store");
+
+Route::get("/reviews", [ReviewsController::class, "index"])->name("reviews");
+Route::get("/reviews/create", [ReviewsController::class, "create"])->name("reviews.create");
+Route::post("/reviews/store", [ReviewsController::class, "store"])->name("reviews.store");

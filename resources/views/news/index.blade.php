@@ -6,4 +6,6 @@
                 <li class="list-group-item"><a href="{{route("news.single", $new->id)}}">{{$new->title}}</a></li>
             @endforeach
         </ul>
+    <br>
+    <a class="btn btn-primary" href="{{route('news.create')}}">Добавить новость</a>
 @endsection

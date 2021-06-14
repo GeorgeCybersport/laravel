@@ -6,4 +6,10 @@
             <li class="list-group-item"><a href="{{route("news.single", $new->id)}}">{{$new->title}}</a></li>
     @endforeach
     </ul>
+    <br>
+    <a class="btn btn-primary" href="{{route('categories.edit', $category->id)}}">Редактировать категорию</a><br><br>
+    <form method="POST" action="{{route('categories.delete', $category->id)}}">
+        @csrf @method("delete")
+        <button class="btn btn-danger">Удалить категорию</button>
+    </form>
 @endsection

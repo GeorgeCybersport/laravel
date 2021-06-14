@@ -25,11 +25,25 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route("categories")}}">Categories</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route("feedback")}}">Feedback</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
 <div class="container">
+    @if ($errors->any())
+        <div class="font-medium text-red-600">
+            {{ __('Whoops! Something went wrong.') }}
+        </div>
+
+        <ul class="mt-3 list-disc list-inside text-sm text-red-600">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
     @yield('content')
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
