@@ -93,3 +93,5 @@ Auth::routes();
 Route::get('/home', function (){
     return view('home');
 })->name('home');
+
+Route::get('/parser', [ParserController::class, 'index'])->middleware('auth')->name('news.parser');

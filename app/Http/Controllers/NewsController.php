@@ -34,12 +34,11 @@ class NewsController extends Controller
     public function store(NewsRequest $request)
     {
 
-        dd($request);
         $data = $request->toArray();
         if (empty(Categories::find($data['category_id']))){
             abort(500);
         }
-        if (News::insert($data))
+        if (News::create($data))
             return redirect('/news');
         else abort(500);
     }
